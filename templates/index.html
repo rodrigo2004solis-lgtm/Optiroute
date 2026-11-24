@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OptiRoute · Optimización de rutas</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="logo">◆</span>
+    <div>
+      <h1>OptiRoute</h1>
+      <p>Optimización de rutas y logística · Modelo de transporte a costo mínimo</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="btn-reset" class="ghost">Cargar escenario base</button>
+    <button id="btn-solve" class="primary">Optimizar</button>
+  </div>
+</header>
+
+<main class="grid">
+  <section class="panel inputs">
+    <div class="card">
+      <div class="card-head"><h2>Almacenes · oferta</h2><button class="small" id="add-alm">+ Agregar</button></div>
+      <table class="edit" id="tbl-alm"></table>
+    </div>
+    <div class="card">
+      <div class="card-head"><h2>Sucursales · demanda</h2><button class="small" id="add-suc">+ Agregar</button></div>
+      <table class="edit" id="tbl-suc"></table>
+    </div>
+    <div class="card">
+      <div class="card-head"><h2>Costos por lote ($ MXN)</h2></div>
+      <div class="params">
+        <label>Costo fijo <input type="number" id="p-fijo" value="40" step="1"></label>
+        <label>$ por km <input type="number" id="p-km" value="1.8" step="0.1"></label>
+        <label>Factor carretera <input type="number" id="p-fac" value="1.25" step="0.05"></label>
+        <button class="small" id="btn-costos">Calcular por distancia</button>
+      </div>
+      <div class="scroll"><table class="edit matrix" id="tbl-costos"></table></div>
+    </div>
+  </section>
+
+  <section class="panel results">
+    <div id="msg" class="msg hidden"></div>
+    <div class="kpis">
+      <div class="kpi"><span>Costo total óptimo</span><strong id="k-costo">—</strong></div>
+      <div class="kpi"><span>Oferta / demanda</span><strong id="k-balance">—</strong><small id="k-fict"></small></div>
+      <div class="kpi"><span>Ahorro frente a Vogel</span><strong id="k-ahorro">—</strong><small id="k-ahorro2"></small></div>
+      <div class="kpi"><span>Rutas utilizadas</span><strong id="k-rutas">—</strong></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>Mapa de distribución</h2><span class="hint">El grosor de la línea es proporcional a los lotes enviados</span></div>
+      <div id="map"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>Plan óptimo de envíos (lotes)</h2><button class="small ghost" id="btn-csv">Exportar CSV</button></div>
+      <div class="scroll"><table class="data" id="tbl-plan"></table></div>
+    </div>
+
+    <div class="two">
+      <div class="card">
+        <div class="card-head"><h2>Precios sombra · almacenes</h2></div>
+        <table class="data" id="tbl-ps-of"></table>
+      </div>
+      <div class="card">
+        <div class="card-head"><h2>Precios sombra · sucursales</h2></div>
+        <table class="data" id="tbl-ps-de"></table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>Sensibilidad por ruta</h2><span class="hint">Costo reducido y rango del costo en el que el plan óptimo no cambia</span></div>
+      <div class="scroll"><table class="data" id="tbl-sens"></table></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>Comparación con los métodos de solución inicial</h2></div>
+      <table class="data" id="tbl-met"></table>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>Interpretación gerencial</h2></div>
+      <ul id="insights" class="insights"></ul>
+    </div>
+  </section>
+</main>
+<footer class="foot">OptiRoute · Proyecto Integrador de Investigación de Operaciones · Motor: SciPy (HiGHS)</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

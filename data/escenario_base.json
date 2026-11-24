@@ -1,0 +1,19 @@
+{
+  "nombre": "NorTec Distribución - plan mensual de envíos",
+  "unidad": "lotes de equipo de cómputo y redes",
+  "costo_fijo": 40,
+  "costo_km": 1.8,
+  "factor_carretera": 1.25,
+  "almacenes": [
+    {"nombre": "CEDIS Monterrey", "lat": 25.6866, "lng": -100.3161, "oferta": 300},
+    {"nombre": "CEDIS Saltillo", "lat": 25.4232, "lng": -101.0053, "oferta": 200},
+    {"nombre": "CEDIS Reynosa", "lat": 26.0806, "lng": -98.2883, "oferta": 180}
+  ],
+  "sucursales": [
+    {"nombre": "Nuevo Laredo", "lat": 27.4779, "lng": -99.5496, "demanda": 150},
+    {"nombre": "Matamoros", "lat": 25.869, "lng": -97.5027, "demanda": 120},
+    {"nombre": "Tampico", "lat": 22.2331, "lng": -97.8611, "demanda": 160},
+    {"nombre": "Ciudad Victoria", "lat": 23.7369, "lng": -99.1411, "demanda": 110},
+    {"nombre": "Piedras Negras", "lat": 28.7, "lng": -100.5236, "demanda": 90}
+  ]
+}
