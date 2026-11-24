@@ -44,6 +44,10 @@ optiroute/
 
 ## Instalación y uso
 
+**Forma rápida:** en Windows, doble clic en `iniciar_windows.bat`; en macOS o Linux, ejecutar `./iniciar_mac_linux.sh`. La primera vez instala las dependencias y después abre la aplicación en el navegador.
+
+**Forma manual:**
+
 Requiere Python 3.10 o superior.
 
 ```bash
